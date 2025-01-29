@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: orchestrator-generated-templates
+  description: A collection of example Backstage software templates generated from serverless workflows
+spec:
+  type: url
+  targets:
+    - yamlgreet.yaml
+
