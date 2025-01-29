@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: my-plugin
+  description: cds
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: mareklibra/generated-workflow-templates
+spec:
+  type: website
+  lifecycle: production
+  owner: user:default/mareklibra
