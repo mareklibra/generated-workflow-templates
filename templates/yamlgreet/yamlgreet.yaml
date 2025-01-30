@@ -40,9 +40,9 @@ spec:
       name: Run workflow
       action: orchestrator:workflow:run
       input:
-        parameters: 
+        parameters: ${{ parameters }}
 
   output:
     links:
       - title: Open workflow run
-        url: 
+        url: ${{ steps.runWorkflow.output.instanceUrl }}
