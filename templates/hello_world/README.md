@@ -1,0 +1,1 @@
+This is a readme file of the generated template from hello_world
