@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: yamlgreet # matches the workflow ID, will be used by orchestrator:workflow:run
-  title: Greeting workflow
+  title: Greeting workflow - generated
   description: YAML based greeting workflow
   tags:
     - orchestrator
