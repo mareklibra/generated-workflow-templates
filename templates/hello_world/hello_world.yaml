@@ -12,7 +12,7 @@ spec:
   type: service
 
   # matches workflow's dataInputSchema
-  parameters:
+  parameters: {}
     # keep on separate line
     
 
