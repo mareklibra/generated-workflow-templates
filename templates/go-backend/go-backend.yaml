@@ -1,0 +1,39 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: go-backend # matches the workflow ID, will be used by orchestrator:workflow:run
+  title: Go Backend application
+  description: Create a starter Go backend application with a CI pipeline
+  tags:
+    - orchestrator
+spec:
+  owner: red-hat-developer-hub-authors
+  system: red-hat-developer-hub
+  type: service
+
+  # matches workflow's dataInputSchema
+  parameters:
+    title: Workflow parameters
+    properties:
+        newComponent:
+            $ref: '#/$defs/Provide information about the new component_0'
+            type: object
+        ciMethod:
+            $ref: '#/$defs/Provide information about the CI method_1'
+            type: object
+    required:
+        - newComponent
+        - ciMethod
+    
+    
+  steps:
+    - id: runWorkflow
+      name: Run workflow
+      action: orchestrator:workflow:run
+      input:
+        parameters: 
+
+  output:
+    links:
+      - title: Open workflow run
+        url: 
