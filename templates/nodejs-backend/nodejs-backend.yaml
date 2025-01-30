@@ -1,0 +1,130 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: nodejs-backend # matches the workflow ID, will be used by orchestrator:workflow:run
+  title: Node.js Backend application
+  description: Create a starter Node.js backend application with a CI pipeline
+  tags:
+    - orchestrator
+spec:
+  owner: red-hat-developer-hub-authors
+  system: red-hat-developer-hub
+  type: service
+
+  # matches workflow's dataInputSchema
+  parameters: 
+    $id: classpath:/schemas/nodejs-backend__main-schema.json
+    title: Data input schema
+    $schema: http://json-schema.org/draft-07/schema#
+    type: object
+    properties:
+      newComponent:
+        $ref: '#/$defs/Provide information about the new component_0'
+        type: object
+      ciMethod:
+        $ref: '#/$defs/Provide information about the CI method_1'
+        type: object
+    required:
+      - newComponent
+      - ciMethod
+    $defs:
+      Provide information about the CI method_1:
+        $id: classpath:/schemas/nodejs-backend__ref-schema__CI_Method.json
+        title: Provide information about the CI method
+        $schema: http://json-schema.org/draft-07/schema#
+        type: object
+        properties:
+          ci:
+            title: CI Method
+            type: string
+            default: github
+            oneOf:
+              - const: github
+                title: GitHub Action
+              - const: tekton
+                title: Tekton
+        allOf:
+          - if:
+              properties:
+                ci:
+                  const: github
+          - if:
+              properties:
+                ci:
+                  const: tekton
+            then:
+              properties:
+                imageRepository:
+                  title: Image Registry
+                  description: The registry to use
+                  type: string
+                  default: quay.io
+                  oneOf:
+                    - const: quay.io
+                      title: Quay
+                    - const: image-registry.openshift-image-registry.svc:5000
+                      title: Internal OpenShift Registry
+                imageUrl:
+                  title: Image URL
+                  description: >-
+                    The Quay.io or OpenShift Image URL
+                    <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
+                  type: string
+                namespace:
+                  title: Namespace
+                  description: The namespace for deploying resources
+                  type: string
+              required:
+                - namespace
+                - imageUrl
+                - imageRepository
+      Provide information about the new component_0:
+        $id: classpath:/schemas/nodejs-backend__ref-schema__New_Component.json
+        title: Provide information about the new component
+        $schema: http://json-schema.org/draft-07/schema#
+        type: object
+        properties:
+          orgName:
+            title: Organization Name
+            description: Organization name
+            type: string
+          repoName:
+            title: Repository Name
+            description: Repository name
+            type: string
+          description:
+            title: Description
+            description: Help others understand what this component is for
+            type: string
+          owner:
+            title: Owner
+            description: An entity from the catalog
+            type: string
+          system:
+            title: System
+            description: An entity from the catalog
+            type: string
+          port:
+            title: Port
+            description: Override the port exposed for the application
+            type: number
+            default: 3000
+        required:
+          - orgName
+          - repoName
+          - owner
+          - system
+          - port
+    
+
+  steps:
+    - id: runWorkflow
+      name: Run workflow
+      action: orchestrator:workflow:run
+      input:
+        parameters: ${{ parameters }}
+
+  output:
+    links:
+      - title: Open workflow run
+        url: ${{ steps.runWorkflow.output.instanceUrl }}
