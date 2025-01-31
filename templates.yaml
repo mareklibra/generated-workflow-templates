@@ -7,6 +7,6 @@ spec:
   type: url
   targets:
     - templates/yamlgreet/yamlgreet.yaml
-    - templates/hello_world/hello_world.yaml
-    - templates/nodejs-backend/nodejs-backend.yaml
+#    - templates/hello_world/hello_world.yaml
+#    - templates/nodejs-backend/nodejs-backend.yaml
 
