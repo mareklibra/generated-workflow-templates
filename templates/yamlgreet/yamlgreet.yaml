@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: yamlgreet # matches the workflow ID, will be used by orchestrator:workflow:run
-  title: Greeting workflow - gen
+  title: Greeting workflow
   description: YAML based greeting workflow
   tags:
     - orchestrator
@@ -12,8 +12,7 @@ spec:
   type: service
 
   # matches workflow's dataInputSchema
-  parameters:
-    # keep on separate line
+  parameters: 
     $id: classpath:/schemas/yamlgreet__main-schema.json
     title: Data Input Schema
     $schema: http://json-schema.org/draft-07/schema#
@@ -41,11 +40,12 @@ spec:
       name: Run workflow
       action: orchestrator:workflow:run
       input:
-        # TODO: this needs to be escaped
-        parameters: ${{ parameters }} 
+        parameters: ${{ parameters }}
 
   output:
     links:
       - title: Open workflow run
-        # use: steps.runWorkflow.output.instanceUrl
         url: ${{ steps.runWorkflow.output.instanceUrl }}
+        more_examples: "${{ steps.runWorkflow.output.instanceUrl }}"
+        more_examples_two: "{{ '$' }}{{ steps.runWorkflow.output.instanceUrl }}"
+
