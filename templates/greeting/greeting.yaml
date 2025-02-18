@@ -1,0 +1,39 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: greeting # matches the workflow ID, will be used by orchestrator:workflow:run
+  title: Greeting workflow
+  description: YAML based greeting workflow
+  tags:
+    - orchestrator
+spec:
+  owner: red-hat-developer-hub-authors
+  system: red-hat-developer-hub
+  type: service
+
+  # matches workflow's dataInputSchema
+  parameters: 
+    - $schema: http://json-schema.org/draft-07/schema#
+      type: object
+      properties:
+        language:
+          title: Language
+          description: Language to greet
+          type: string
+          enum:
+            - English
+            - Spanish
+          default: English
+    
+
+  steps:
+    - id: runWorkflow
+      name: Run workflow
+      action: orchestrator:workflow:run
+      input:
+        parameters: ${{ parameters }}
+
+  output:
+    links:
+      - title: Open workflow run
+        url: "${{ steps.runWorkflow.output.instanceUrl }}"
