@@ -1,0 +1,10 @@
+{
+  "placeholderOne": {
+    "type": "string",
+    "title": "This is input box for the placeholder one"
+  },
+  "placeholderTwo": {
+    "type": "string",
+    "title": "This is input box for the placeholder two"
+  }
+}
