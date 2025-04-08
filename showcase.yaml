@@ -1,0 +1,22 @@
+# Based on https://github.com/redhat-developer/rhdh/blob/main/catalog-entities/components/showcase.yaml
+# Purpose: To explore possibility of linking templates to a component
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backstage-showcase-with-templates
+  title: Backstage Showcase With Templates
+  description: |
+    This is the Janus Community Showcase of Backstage.io with linked templates
+  links:
+    - title: Janus Website
+      url: https://janus-idp.io
+  annotations:
+    github.com/project-slug: redhat-developer/rhdh
+spec:
+  type: website
+  system: janus-idp
+  owner: janus-authors
+  lifecycle: production
+  dependsOn:
+    - resource:github
