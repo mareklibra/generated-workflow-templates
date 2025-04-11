@@ -5,7 +5,7 @@
   },
   "placeholderFour": {
     "type": "string",
-    "title": "This is ActiveTextInput ui:widget to test preservation of state",
+    "title": "This is ActiveTextInput ui:widget to test preservation of state on placeholderFour",
     "ui:widget": "ActiveTextInput"
   }
 }
