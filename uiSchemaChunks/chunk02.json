@@ -1,7 +1,7 @@
 {
   "placeholderTwo": {
     "type": "string",
-    "title": "This is inputbox supplied by chunk02"
+    "title": "This is inputbox supplied by chunk02, replacing addition by chunk01 to the same placeholderTwo"
   },
   "placeholderFour": {
     "type": "string",
