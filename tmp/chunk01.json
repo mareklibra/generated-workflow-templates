@@ -3,9 +3,6 @@
     "type": "string",
     "title": "This is input box for the placeholderOne supplied by chunk01"
   },
-  "notused": {
-    "title": "This is input box for the placeholderTwo supplied by chunk01"
-  },
   "placeholderTwo": {
     "type": "string",
     "title": "This is input box for the placeholderTwo supplied by chunk01"
